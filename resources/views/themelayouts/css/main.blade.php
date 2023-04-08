@@ -120,6 +120,24 @@ ul {
 	list-style: none;
 }
 
+
+.card-body{
+	border: 1px solid #dfdfdf;
+    border-radius: 20px;
+    padding: 20px 10px;
+	margin-bottom: 10px; 
+}
+
+.card-body:hover{
+	background: #f1f1f1;
+	cursor: pointer;
+}
+
+.date-form{
+	float: right;
+	font-size: 14px;
+}
+
 blockquote,
 q {
 	quotes: none;
@@ -138,6 +156,54 @@ table {
 	border-spacing: 0;
 }
 
+.message_list{
+    padding: 10px 15px;
+    text-align: left;
+    border-radius: 14px;
+    border: 1px solid #b5b5b5;
+    font-weight: 500;
+	min-width: 220px;
+	margin-bottom: 10px;
+}
+
+.card-message{
+	float: right;
+	background: #ffecb5;
+}
+
+.wishes-message{
+	float: left;
+	background: #f1f1f1;
+}
+#messages-container{
+	border:solid 1px;
+	width:50%;
+	border-left-color:red; 
+	padding: 30px 30px 30px 0px; 
+	overflow: scroll;
+}
+
+.date_tag{
+	font-size: 11px;
+    float: right;
+}
+.name_tag{
+	font-size: 12px;
+    float: left;
+}
+#messages-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#messages-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.message_list p{
+	margin: 0px;
+}
 body {
 	-webkit-text-size-adjust: none;
 }
@@ -595,7 +661,7 @@ pre code {
 
 .row {
 	margin-top: 0;
-	margin-left: -1.5em;
+	/* margin-left: -1.5em; */
 }
 
 .row>* {

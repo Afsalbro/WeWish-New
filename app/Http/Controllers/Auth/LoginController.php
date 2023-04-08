@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -38,8 +41,27 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function show()
+    public function __invoke()
+    {
+        // Controller logic here
+    }
+
+    public function index()
     {
         return view('pages.login&register.login');
     }
+
+    /**
+     * Handle an incoming authentication request.
+     *
+     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(LoginRequest $request){
+        $request->authenticate();
+        $request->session()->regenerate();
+
+        return redirect()->route('home')->with('success','Logged successfully.');
+    }
+
 }

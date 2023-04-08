@@ -20,7 +20,7 @@
 
         .card-deck .card {
             margin: 0 0 1rem;
-			width: 100px;
+            width: 100px;
         }
 
         @media (min-width: 576px) and (max-width: 767.98px) {
@@ -42,6 +42,30 @@
                 -ms-flex: 0 0 24%;
                 flex: 0 0 24%;
             }
+        }
+
+        .alert {
+            position: fixed;
+            top: 60px;
+            right: 0px;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        .alert{
+            border-radius: 10px;
+            font-size: 13px;
+        }
+        .alert-success {
+            background: #d1e7dd;
+            color: #0a3622;
+            border: 2px solid #a3cfbb;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            color: #58151c;
+            border: 2px solid #ad6067;
         }
     </style>
 </head>

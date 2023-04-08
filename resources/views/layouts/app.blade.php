@@ -47,7 +47,7 @@
                             @endif
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register.index') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -83,7 +83,7 @@
                     <div class="inner">
                         <section>
                             <h4>Form</h4>
-                            <form method="post" action="{{ route('card.store') }}">
+                            <form method="post" action="">
                                 @csrf
                                 <div class="row gtr-uniform">
                                     <div class="col-6 col-12-xsmall">

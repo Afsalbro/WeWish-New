@@ -13,25 +13,39 @@
                 <div style="border:solid 1px;width:50%">
                     {{-- {{dd($c)}} --}}
                     <div class="card" style="width: 100%;padding:10px">
-                        <div class="card-body">
-                            <ul id="sortable">
-                                @foreach ($card as $c)
-                                    @if ($c->category == '1')
-                                        <h5 class="card-title">Happy Birthday</h5> 
-                                    @elseif($c->category == '2')
-                                        <h5 class="card-title">Happy Anniversary</h5>
-                                    @elseif($c->category == '3')
-                                        <h5 class="card-title">Happy Retirement</h5>
-                                    @elseif($c->category == '4')
-                                        <h5 class="card-title">Our Condolonces</h5>
-                                    @endif
-                                    <p class="card-text">{{ $c->message }}</p>
-                                @endforeach
-                            </ul>
-                        </div>
+
+                        @foreach ($card as $c)
+                            <div class="card-body" attr="{{ $c->projects->id }}">
+                                <ul id="sortable">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="card-title" style="margin: 0px;">project: {{ $c->projects->name }}
+                                            </h5>
+                                        </div>
+                                        <div class="col-12">
+                                            @if ($c->category == '1')
+                                                <p style="margin: 0px 0px 10px;"><b>Happy Birthday</b> <span
+                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
+                                            @elseif($c->category == '2')
+                                                <p style="margin: 0px 0px 10px;"><b>Happy Anniversary</b> <span
+                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
+                                            @elseif($c->category == '3')
+                                                <p style="margin: 0px 0px 10px;"><b>Happy Retirement</b> <span
+                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
+                                            @elseif($c->category == '4')
+                                                <p style="margin: 0px 0px 10px;"><b>Our Condolonces</b> <span
+                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-                <div style="border:solid 1px;width:50%;border-left-color:red"></div>
+                <div id="messages-container">
+                   
+                </div>
             </div>
             <div class='col-12' align=center style="padding:20px">
                 <a align=center; href='' class='button'><span>Retour</span></a>
@@ -48,7 +62,7 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
-        width: 60%;
+        width: 100%;
     }
 
     #sortable li {
@@ -72,4 +86,13 @@
     $(function() {
         $("#sortable").sortable();
     });
+
+    $(document).on({
+        'click': function() {
+            $.get("{{ url('wish_card/') }}/" + $(this).attr('attr'), function(data, status) {
+               $('#messages-container').html(data['data']);
+            });
+        }
+        
+    }, '.card-body');
 </script>

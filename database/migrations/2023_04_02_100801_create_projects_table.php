@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('p_id');
+            $table->bigInteger('user_id');
             $table->string('name');
-            $table->string('email');
-            $table->string('category');
-            $table->text('message');
+            $table->enum('published', [0, 1])->default(0);
+            $table->string('token');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('projects');
     }
 };

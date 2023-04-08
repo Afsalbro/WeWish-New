@@ -2,6 +2,7 @@
 @extends('themelayouts.app')
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,20 +85,26 @@
                     <div class="inner">
                         <section>
                             <h4>Form</h4>
-                            <form method="post" action="{{ route('card.store') }}">
+                            <form method="post" action="{{route('store.wishes')}}">
                                 @csrf
                                 <div class="row gtr-uniform">
+
+                                    <div class="col-12 col-12-xsmall">
+                                        <input type="hidden" name="id" value="{{ $project->id }}">
+                                        <h2>project: {{ $project->name }}</h2>
+                                    </div>
+
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="name" id="name" class="@error('name') is-invalid @enderror" placeholder="Name" value="{{ old('name') }}" />
-                                        @error('name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" name="name" id="name"
+                                            class="@error('name') is-invalid @enderror" placeholder="Name"
+                                            value="{{ auth()->user()->name ? auth()->user()->name : old('name') }}" />
+                                       
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="email" name="email" id="email" class="@error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}" />
-                                        @error('email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="email" name="email" id="email"
+                                            class="@error('email') is-invalid @enderror" placeholder="Email"
+                                            value="{{ auth()->user()->email ? auth()->user()->email : old('email') }}" />
+                                        
                                     </div>
                                     <div class="col-6 col-12-medium">
                                         <ul class="actions small">
@@ -107,22 +114,15 @@
                                         </ul>
                                     </div>
                                     <div class="col-12">
-                                        <select name="category" id="demo-category" class="@error('category') is-invalid @enderror">
-                                            <option value="">-Select the Category -</option>
-                                            <option value="1" {{ old('category') == '1' ? 'selected' : '' }}>Happy BirthDay</option>
-                                            <option value="2" {{ old('category') == '2' ? 'selected' : '' }}>Happy Anniversary</option>
-                                            <option value="3" {{ old('category') == '3' ? 'selected' : '' }}>Happy Retirement</option>
-                                            <option value="4" {{ old('category') == '4' ? 'selected' : '' }}>Our Condolonces</option>
+                                        <input type="hidden" name="category" value="{{ $card->category }}">
+                                        category: {{$card->categoryN}}
                                         </select>
-                                        @error('category')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                       
                                     </div>
                                     <div class="col-12">
-                                        <textarea name="message" id="message" class="@error('message') is-invalid @enderror" placeholder="Enter your message" rows="6">{{ old('message') }}</textarea>
-                                        @error('message')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <textarea name="message" id="message" class="@error('message') is-invalid @enderror" placeholder="Enter your message"
+                                            rows="6">{{ old('message') }}</textarea>
+                                        
                                     </div>
                                     <div class="col-12">
                                         <ul class="actions">
@@ -139,4 +139,5 @@
         </main>
     </div>
 </body>
+
 </html>

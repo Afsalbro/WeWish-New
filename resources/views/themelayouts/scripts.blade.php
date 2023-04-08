@@ -6,3 +6,11 @@
 	<script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
 	<script src="{{ asset('assets/js/util.js') }}"></script>
 	<script src="{{ asset('assets/js/main.js') }}"></script>
+
+	<script>
+		$(document).ready(function(){
+			setTimeout(function(){
+				$('.alert').fadeOut( 3000 );
+			}, 2000);
+		})
+	</script>

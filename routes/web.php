@@ -4,6 +4,8 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\verficationController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,35 +24,31 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-
+Route::get('confirmation/{token}',[verficationController::class,'ensureMail']);
 Route::get('/', function () {
     return view('pages.home.index');
-});
+})->name('home');
 
 Auth::routes();
-Route::get('/login', [LoginController::class, 'show'])->name('login');
-Route::get('/register', [RegisterController::class, 'show'])->name('register');
-Route::get('/register_new', [RegisterController::class, 'show'])->name('register.show');
-Route::post('/register_asdsad', [RegisterController::class, 'register'])->name('register.perform');
-Route::post('/logout', [RegisterController::class, 'perform'])->name('logout');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::resource('login', LoginController::class);
+Route::resource('register', RegisterController::class);
+Route::get('/logout',function(){
+    Auth::logout();
+
+    return redirect()->route('login.index');
+});
+
+// Route::get('verification_page', verficationController::class,'show_verification_page')->name('verification');
 
 
-Route::get('/card', [CardController::class, 'index']);
-// Route::get('/card/{url}', [CardController::class, 'show']);
-Route::get('/wish-card', [CardController::class, 'wishCard']);
-Route::get('/card/messages', [CardController::class, 'show']);
+// project route
+Route::resource('create_project', ProjectController::class);
 
-Route::post('/card', [CardController::class, 'create'])->name('card.create');
-// Route::post('/wish-card', [HomeController::class, 'create'])->name('card.create');
-Route::post('/wish-card-form', [CardController::class, 'store'])->name('card.store');
+//create card
+Route::resource('wish_card', ProjectController::class);
+Route::resource('wish_card_form', CardController::class);
 
+Route::get('wish_card_list',[HomeController::class,'wishCardList'])->name('wishcard.list');
 
-// Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home2/{token}', [App\Http\Controllers\CardController::class, 'secondhome']);
-
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/wishes/{token}', [App\Http\Controllers\ProjectController::class, 'wishesFromAll']);
+Route::post('/wishes', [App\Http\Controllers\ProjectController::class, 'storeWishes'])->name('store.wishes');

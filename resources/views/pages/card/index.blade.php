@@ -8,7 +8,7 @@
             <div class="inner">
                 <section>
                     <h4>Créer votre carte commune !</h4>
-                    <form method="GET" action="{{route('register.show')}}">
+                    <form method="POST" action="{{ route('wish_card.store') }}">
                         @csrf
                         <div class="row gtr-uniform">
                             <div class="col-12"></div>

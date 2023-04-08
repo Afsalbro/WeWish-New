@@ -45,7 +45,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest');
+        //
     }
 
     /**
@@ -63,27 +63,25 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
+    public function index()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
-    public function show()
-    {
+        if(isset(Auth::user()->id)){
+            return redirect()->route('home');
+        }
         // return view('auth.register');
         return view('pages.login&register.register');
     }
 
-    public function register(Request $request)
+    /**
+     * Handle an incoming registration request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+
+    public function store(Request $request)
     {
         //  dd($request->all());
         try {
@@ -93,33 +91,33 @@ class RegisterController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'url_token'=> $token
+                'url_token' => $token
             ]);
 
             $email_data = [
                 'email' => $request->email,
                 'name' => $request->name,
-                'body'=>''
+                'body' => "" . url('confirmation/'.$token)
             ];
 
             Mail::send('welcome_email', $email_data, function ($message) use ($email_data) {
-                $message->to($email_data['email'], $email_data['name'])
+                $message->to($email_data['email'])
                     ->subject('Welcome to WeWish')
                     ->from($email_data['email'], 'WeWish');
             });
 
-            $email_data = [
-                'email' => $request->email,
-                'name' => $request->name,
-                'body'=>'http://localhost/WeWish/public/home2/'.$token
-            ];
-            Mail::send('welcome_email', $email_data, function ($message) use ($email_data) {
-                $message->to($email_data['email'], $email_data['name'])
-                    ->subject('Welcome to WeWish')
-                    ->from($email_data['email'], 'WeWish');
-            });
+            // $email_data = [
+            //     'email' => $request->email,
+            //     'name' => $request->name,
+            //     'body'=>'http://localhost/WeWish/public/home2/'.$token
+            // ];
+            // Mail::send('welcome_email', $email_data, function ($message) use ($email_data) {
+            //     $message->to($email_data['email'], $email_data['name'])
+            //         ->subject('Welcome to WeWish')
+            //         ->from($email_data['email'], 'WeWish');
+            // });
 
-            auth()->login($user);
+            Auth::login($user);
 
             return redirect('/home')->with('success', "Account successfully registered.");
         } catch (\Throwable $th) {

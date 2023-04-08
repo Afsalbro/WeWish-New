@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['ensure.Mail']);
     }
 
     /**
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // if(Project::where()){
+
+        // }
         return view('home');
 
     }
@@ -31,5 +36,12 @@ class HomeController extends Controller
     {
         // dd('here');
         return view('pages.form.wish-form');
+    }
+
+    public function wishCardList(){
+        $card = Card::with('projects')->get();
+
+        // dd($card);
+        return view('pages.messages.index')->with(['card'=>$card]);
     }
 }

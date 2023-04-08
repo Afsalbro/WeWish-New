@@ -11,7 +11,7 @@
                     <h2 align=center>S'il vous plait enregistrez vous</h2>
                     <br>
                     <section>
-                        <form method="POST" action="{{ route('register.perform') }}">
+                        <form method="POST" action="{{ route('register.store') }}">
                             @csrf
                             <div class="row gtr-uniform">
                                 <div class="col-3 col-12-xsmall">
@@ -48,7 +48,7 @@
                             </div>
                         </form>
                         <div class="col-12" style="text-align: center">
-                            <a align=center href="{{route('login')}}">veuillez vous connecter</a>
+                            <a align=center href="{{route('login.index')}}">veuillez vous connecter</a>
                         </div>
                     </section>
                 </div>

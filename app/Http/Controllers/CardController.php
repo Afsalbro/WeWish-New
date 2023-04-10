@@ -21,7 +21,7 @@ class CardController extends Controller
 
     public function index()
     {
-        $Projects = Project::where(['published' => Project::UNPUBLISHED])->get();
+        $Projects = Project::where(['published' => Project::UNPUBLISHED, 'user_id' => auth()->user()->id])->get();
 
         if (empty($Projects[0])) {
             return redirect()->route('wish_card.index')->with('error', 'create a project first!');
@@ -80,7 +80,7 @@ class CardController extends Controller
 
         } catch (\Exception $e) {
             // Log the error or display a user-friendly error message
-            dd($e);
+            // dd($e);
             // Log::error($e->getMessage());
             return redirect()->back()->with('error', 'There was an error sending your message. Please try again later.');
         }

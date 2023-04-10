@@ -24,6 +24,6 @@ class Card extends Model
     ];
 
     public function projects(){
-        return $this->hasOne(Project::class, 'id', 'p_id');
+        return $this->hasOne(Project::class, 'id', 'p_id')->whereUser_id(auth()->user()->id);
     }
 }

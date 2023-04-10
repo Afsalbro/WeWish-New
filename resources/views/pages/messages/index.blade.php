@@ -15,36 +15,43 @@
                     <div class="card" style="width: 100%;padding:10px">
 
                         @foreach ($card as $c)
-                            <div class="card-body" attr="{{ $c->projects->id }}">
-                                <ul id="sortable">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h5 class="card-title" style="margin: 0px;">project: {{ $c->projects->name }}
-                                            </h5>
+                            @if (isset($c->projects->id))
+                                <div class="card-body" attr="{{ $c->projects->id }}">
+                                    <ul id="sortable">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h5 class="card-title" style="margin: 0px;">project:
+                                                    {{ $c->projects->name }}
+                                                </h5>
+                                            </div>
+                                            <div class="col-12">
+                                                @if ($c->category == '1')
+                                                    <p style="margin: 0px 0px 10px;"><b>Happy Birthday</b> <span
+                                                            class="date-form">{{ $c->created_at->format('m-d-y') }}</span>
+                                                    </p>
+                                                @elseif($c->category == '2')
+                                                    <p style="margin: 0px 0px 10px;"><b>Happy Anniversary</b> <span
+                                                            class="date-form">{{ $c->created_at->format('m-d-y') }}</span>
+                                                    </p>
+                                                @elseif($c->category == '3')
+                                                    <p style="margin: 0px 0px 10px;"><b>Happy Retirement</b> <span
+                                                            class="date-form">{{ $c->created_at->format('m-d-y') }}</span>
+                                                    </p>
+                                                @elseif($c->category == '4')
+                                                    <p style="margin: 0px 0px 10px;"><b>Our Condolonces</b> <span
+                                                            class="date-form">{{ $c->created_at->format('m-d-y') }}</span>
+                                                    </p>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <div class="col-12">
-                                            @if ($c->category == '1')
-                                                <p style="margin: 0px 0px 10px;"><b>Happy Birthday</b> <span
-                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
-                                            @elseif($c->category == '2')
-                                                <p style="margin: 0px 0px 10px;"><b>Happy Anniversary</b> <span
-                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
-                                            @elseif($c->category == '3')
-                                                <p style="margin: 0px 0px 10px;"><b>Happy Retirement</b> <span
-                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
-                                            @elseif($c->category == '4')
-                                                <p style="margin: 0px 0px 10px;"><b>Our Condolonces</b> <span
-                                                        class="date-form">{{ $c->created_at->format('m-d-y') }}</span></p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
                 <div id="messages-container">
-                   
+
                 </div>
             </div>
             <div class='col-12' align=center style="padding:20px">
@@ -90,9 +97,9 @@
     $(document).on({
         'click': function() {
             $.get("{{ url('wish_card/') }}/" + $(this).attr('attr'), function(data, status) {
-               $('#messages-container').html(data['data']);
+                $('#messages-container').html(data['data']);
             });
         }
-        
+
     }, '.card-body');
 </script>

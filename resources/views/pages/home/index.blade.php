@@ -7,7 +7,7 @@
             <p>Anniversaire, pot de départ, voeux ... évitez de courrir derière tous le monde le jour J <br />
 
             <ul class="actions special">
-                <li><a href="{{ url('/card') }}" class="button primary">Créer votre carte</a></li>
+                <li><a href="{{ route('wish_card.index') }}" class="button primary">Créer votre carte</a></li>
             </ul>
         </div>
         <a href="#two" class="more scrolly">Comment ça marche?</a>

@@ -97,13 +97,13 @@
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="name" id="name"
                                             class="@error('name') is-invalid @enderror" placeholder="Name"
-                                            value="{{ auth()->user()->name ? auth()->user()->name : old('name') }}" />
+                                            value="{{ !empty(auth()->user()->name) ? auth()->user()->name : old('name') }}" />
                                        
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="email" name="email" id="email"
                                             class="@error('email') is-invalid @enderror" placeholder="Email"
-                                            value="{{ auth()->user()->email ? auth()->user()->email : old('email') }}" />
+                                            value="{{ !empty(auth()->user()->email) ? auth()->user()->email : old('email') }}" />
                                         
                                     </div>
                                     <div class="col-6 col-12-medium">

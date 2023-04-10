@@ -28,6 +28,9 @@ Route::get('confirmation/{token}',[verficationController::class,'ensureMail']);
 Route::get('/', function () {
     return view('pages.home.index');
 })->name('home');
+Route::get('/home', function () {
+    return view('pages.home.index');
+});
 
 Auth::routes();
 Route::resource('login', LoginController::class);

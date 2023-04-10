@@ -18,6 +18,10 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        if(!isset(auth()->user()->id)){
+            return redirect()->route('login.index')->with('error','oops! your session expired plaese login to countinue!');
+        }
+
         $project = new Project;
         $project->name = $request->nomprojet;
         $project->user_id = auth()->user()->id;

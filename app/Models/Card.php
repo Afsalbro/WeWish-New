@@ -15,12 +15,18 @@ class Card extends Model
     const C4 = 'Our Condolonces';
     const C5 = '';
 
+    const TEXTTYPE = 0;
+    const GIFTYPE = 1;
+    const VIDEOTYPE = 2;
+
     protected $fillable = [
         'p_id',
         'name',
         'email',
         'category',
         'message',
+        'file_type',
+        'file_name'
     ];
 
     public function projects(){

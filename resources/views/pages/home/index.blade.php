@@ -23,10 +23,10 @@
                 <p> Chacun peut personnaliser à sa manière sous le contrôle du créateur de la carte</p>
             </header>
             <!--<ul class="icons major">
-                                        <li><span class="icon fa-gem major style1"><span class="label">Lorem</span></span></li>
-                                        <li><span class="icon fa-heart major style2"><span class="label">Ipsum</span></span></li>
-                                        <li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
-                                       </ul>-->
+                                                    <li><span class="icon fa-gem major style1"><span class="label">Lorem</span></span></li>
+                                                    <li><span class="icon fa-heart major style2"><span class="label">Ipsum</span></span></li>
+                                                    <li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
+                                                   </ul>-->
         </div>
     </section>
 
@@ -109,10 +109,22 @@
             <ul class="actions stacked">
                 <div id="container">
                     <!-- zone de connexion -->
-                    <form action='connection.php' method='POST'><label><b>Nom d'utilisateur</b></label><input
-                            type='email' placeholder='adresse mail' name='username' required><label><b>Mot de
-                                passe</b></label><input type='password' placeholder='Mot de passe' name='password'
-                            required><br><input type='submit' id='submit' value='Se connecter'>
+                    @if (!isset(auth()->user()->id))
+                        <form action='{{ route('login.store') }}' method='POST'>
+                            @csrf
+                            {{--  --}}
+                            <label><b>Nom d'utilisateur</b></label>
+                            <input type='email' placeholder='adresse mail' name='email' required>
+                            {{--  --}}
+                            <label><b>Mot de passe</b></label>
+                            <input type='password' placeholder='Mot de passe' name='password' required><br>
+                            {{--  --}}
+                            <input type='submit' id='submit' value='Se connecter'>
+                        </form>
+                    @else
+                        <a href="{{ route('wishcard.list') }}" style="border: none;"><input type='submit' id='submit'
+                                value='espace carte commune'></a>
+                    @endif
                 </div>
             </ul>
         </div>

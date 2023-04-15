@@ -61,7 +61,7 @@ class LoginController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        return redirect()->route('home')->with('success','Logged successfully.');
+        return redirect()->route('wishcard.list')->with('success','Logged successfully.');
     }
 
 }

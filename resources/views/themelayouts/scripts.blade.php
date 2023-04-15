@@ -13,4 +13,17 @@
 				$('.alert').fadeOut( 3000 );
 			}, 2000);
 		})
+
+		$('.message-area').hide();
+		
+		$('.tx-msg').show();
+
+		$('.light-button').on('click',function(){
+			$('.light-button').removeClass('active');
+			$('.message-area').hide();
+			
+			$('.' + $(this).attr('attr')).show();
+			$(this).addClass('active');
+			$('.active-type').val($(this).val());
+		});
 	</script>

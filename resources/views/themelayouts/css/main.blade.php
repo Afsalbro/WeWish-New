@@ -2019,6 +2019,8 @@ label {
 }
 
 input[type="text"],
+input[type="date"],
+input[type="file"],
 input[type="password"],
 input[type="email"],
 select,
@@ -2041,6 +2043,7 @@ textarea {
 input[type="text"]:invalid,
 input[type="password"]:invalid,
 input[type="email"]:invalid,
+input[type="date"]:invalid,
 select:invalid,
 textarea:invalid {
 	box-shadow: none;
@@ -2049,6 +2052,7 @@ textarea:invalid {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
+input[type="date"]:focus,
 select:focus,
 textarea:focus {
 	box-shadow: 0 0 0 2px #21b2a6;
@@ -2074,6 +2078,8 @@ select::-ms-expand {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
+input[type="file"],
 select {
 	height: 2.75em;
 }
@@ -2698,7 +2704,7 @@ input[type="submit"].primary:active,
 input[type="reset"].primary:active,
 input[type="button"].primary:active,
 button.primary:active,
-.button.primary:active {
+.button.primary:active, .active {
 	background-color: #eb341c !important;
 }
 
@@ -3064,6 +3070,7 @@ button:disabled,
 .wrapper.style1 input[type="text"],
 .wrapper.style1 input[type="password"],
 .wrapper.style1 input[type="email"],
+.wrapper.style1 input[type="date"],
 .wrapper.style1 select,
 .wrapper.style1 textarea {
 	background-color: rgba(255, 255, 255, 0.075);
@@ -3404,10 +3411,15 @@ button:disabled,
 .wrapper.style5 label {
 	color: #2E3842;
 }
+input[type="file"]{
+	padding: 10px;
+}
 
 .wrapper.style5 input[type="text"],
 .wrapper.style5 input[type="password"],
 .wrapper.style5 input[type="email"],
+.wrapper.style5 input[type="date"],
+.wrapper.style5 input[type="file"],
 .wrapper.style5 select,
 .wrapper.style5 textarea {
 	background-color: rgba(0, 0, 0, 0.0375);
@@ -3776,9 +3788,9 @@ body.is-menu-visible #menu {
 	margin-left: 0;
 }
 
-#header.alt {
+/* #header.alt {
 	background: transparent;
-}
+} */
 
 #header.alt h1 {
 	pointer-events: none;

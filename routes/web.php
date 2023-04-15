@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('confirmation/{token}',[verficationController::class,'ensureMail']);
+Route::get('confirmation/{token}', [verficationController::class, 'ensureMail']);
 Route::get('/', function () {
     return view('pages.home.index');
 })->name('home');
@@ -34,8 +34,9 @@ Route::get('/home', function () {
 
 Auth::routes();
 Route::resource('login', LoginController::class);
+Route::post('update/profile/{id}', [HomeController::class,'updateProfile'])->name('update.profile');
 Route::resource('register', RegisterController::class);
-Route::get('/logout',function(){
+Route::get('/logout', function () {
     Auth::logout();
 
     return redirect()->route('login.index');
@@ -51,7 +52,12 @@ Route::resource('create_project', ProjectController::class);
 Route::resource('wish_card', ProjectController::class);
 Route::resource('wish_card_form', CardController::class);
 
-Route::get('wish_card_list',[HomeController::class,'wishCardList'])->name('wishcard.list');
+Route::get('wish_card_list', [HomeController::class, 'wishCardList'])->name('wishcard.list');
 
 Route::get('/wishes/{token}', [App\Http\Controllers\ProjectController::class, 'wishesFromAll']);
 Route::post('/wishes', [App\Http\Controllers\ProjectController::class, 'storeWishes'])->name('store.wishes');
+
+
+Route::get('/espace', function () {
+    return view('pages.common_card.index');
+});

@@ -16,7 +16,9 @@ return new class extends Migration
             $table->bigInteger('p_id');
             $table->string('name');
             $table->string('email');
-            $table->string('message');
+            $table->string('message')->nullable();
+            $table->enum('file_type',['0','1','2']);
+            $table->string('file_name')->nullable();
             $table->unique(['p_id','email']);
             $table->timestamps();
         });

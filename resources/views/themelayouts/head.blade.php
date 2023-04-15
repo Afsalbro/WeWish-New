@@ -8,6 +8,8 @@
     {{-- </noscript> --}}
     @include('themelayouts.css.main')
     @include('themelayouts.css.noscript')
+
+    
     <style>
         body {
             padding-top: 20px;

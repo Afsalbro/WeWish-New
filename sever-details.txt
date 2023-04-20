@@ -1,0 +1,8 @@
+database name: frdr6620_we_wish
+database user Name: frdr6620_kesa
+database password: 9G,X;-]!wmUw
+
+mail user name: we-wish1221@nagco.fr.frdr6620.odns.fr
+mail password: 0.9YCRAcRc[g
+mail host: day.o2switch.net
+mail port: 465

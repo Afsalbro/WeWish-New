@@ -103,7 +103,7 @@ class RegisterController extends Controller
             Mail::send('welcome_email', $email_data, function ($message) use ($email_data) {
                 $message->to($email_data['email'])
                     ->subject('Welcome to WeWish')
-                    ->from($email_data['email'], 'WeWish');
+                    ->from(env("MAIL_FROM_ADDRESS", "testing@gamil.com"), 'WeWish');
             });
 
             // $email_data = [

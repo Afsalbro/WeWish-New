@@ -61,6 +61,8 @@
                         @php
                             if (!empty(auth()->user()->dob)) {
                                 $date = date('d/m/Y', strtotime(auth()->user()->dob));
+                            }else{
+                                $date = '';
                             }
                         @endphp
 

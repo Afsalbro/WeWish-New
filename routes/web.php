@@ -61,3 +61,7 @@ Route::post('/wishes', [App\Http\Controllers\ProjectController::class, 'storeWis
 Route::get('/espace', function () {
     return view('pages.common_card.index');
 });
+Route::get('/changeLanguage/{locale}', [\App\Http\Controllers\LanguageController::class,'change']);
+
+
+

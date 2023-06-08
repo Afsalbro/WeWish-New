@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'description' => 'THE GREETING CARD 2.0',
+    'create_card' => 'CREATE YOUR CARD',
+    'how_it_works' => 'How It Works',
+    'why' => 'WHY THE COMMON CARD?',
+    'why_1' => 'Friends or family who is 500 km away, can finally write a word on it',
+    'why_2' => 'No more hiding the card, or passing it around at the last minute',
+    'why_3' => 'Everyone can customize in their own way under the control of the map creator',
+    'menu_1' => 'WHY THIS CARD?',
+    'menu_2' => 'HOW IT WORKS ?',
+    'menu_3' => "IT'S FREE?",
+    'about_head' => "LA CARTE COMMUNE IS GREETING CARDS FROM FRENCH DESIGNERS, MADE IN FRANCE 🇫🇷",
+    'free' => 'FREE !',
+    'free_1' => 'The message list',
+    'free_2' => 'You want to use the messages on your own support, get the list of messages for free!',
+    'from' => 'CARD FROM €9.90',
+    'from_1' => 'Create the common map',
+    'from_2' => 'Create the common greeting card, among several hundred models from partner French artists! French made !',
+    'login'=>"MANAGE YOUR CURRENT COMMON CARD BY LOGGING IN",
+    'username'=>'username',
+    'password'=>'Password',
+    'toLogin'=>'To log in',
+    'cardSpace' => 'common card space',
+    'createCommonCard' => 'CREATE YOUR COMMON CARD!',
+    'createCommonCard_2' => 'Create your common card!',
+    'nameOfProject'=>'Name of the project*',
+    'identify'=>'To continue the creation of the common card, please identify yourself',
+    'createAcc'=>'Create an account'
+];

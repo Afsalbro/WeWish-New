@@ -6,6 +6,6 @@
 				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 			</ul>
 			<ul class="copyright">
-				<li>&copy; La carte commune</li>
+				<li>&copy; WeWish</li>
 			</ul>
 		</footer>
